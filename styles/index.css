@@ -1,0 +1,217 @@
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    line-height: 39px;
+}
+
+ol {
+    list-style-position: inside;
+}
+
+.container {
+    padding-top: 50px;
+    margin: 0 auto;
+    width: 950px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 65px;
+    column-gap: 35px;
+}
+
+.expensesInput {
+    width: 484px;
+}
+
+.moneyInput {
+    margin-bottom: 18px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px 17px 9px 22px;
+    border: 1px solid #000;
+}
+
+.rub::after {
+    content: ' руб.';
+}
+
+.moneyInput__input {
+    width: 100%;
+    border: none;
+    font-size: inherit;
+}
+
+.moneyInput__input:focus {
+    outline: none;
+}
+
+.categorySelect {
+    width: 100%;
+    padding: 10px 16px 9px 22px;
+    font-size: inherit;
+}
+
+.categorySelect:focus {
+    outline: none;
+}
+
+.addButton {
+    width: 370px;
+    height: 58px;
+    border: none;
+    border-radius: 5px;
+    font-size: inherit;
+    font-weight: 400;
+    line-height: 58px;
+    color: #FFF;
+    background-color: #0094FF;
+    cursor: pointer;
+}
+
+.status {
+    width: 484px;
+}
+
+.status__limit {
+    margin-bottom: 13px;
+}
+
+.changeLimitButton {
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+}
+
+.status__total {
+    margin-bottom: 35px;
+}
+
+.status__statusText_positive {
+    color: #039000;
+}
+
+.status__statusText_negative {
+    color: #FC0000;
+}
+
+.label {
+    font-weight: 700;
+}
+
+.history {
+    width: 370px;
+}
+
+.history__title {
+    margin-bottom: 21px;
+}
+
+.resetButton {
+    margin-top: 112px;
+    width: 484px;
+    height: 58px;
+    border: none;
+    border-radius: 5px;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 58px;
+    color: #FFF;
+    background-color: #FF0000;
+    cursor: pointer;
+}
+
+/*дальше идёт попап*/
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+}
+
+.popup_open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup__content {
+    position: relative;
+    padding-top: 39px;
+    padding-right: 35px;
+    padding-left: 57px;
+    width: 991px;
+    height: 525px;
+    border-radius: 10px;
+    background-color: #fff;
+    color: black;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper__popupTitle {
+    padding-top: 8px;
+}
+
+.wrapper__closePopupBtn {
+    width: 29px;
+    height: 29px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.wrapper-change {
+    margin-top: 150px;
+    display: flex;
+    gap: 28px;
+    justify-content: center;
+}
+
+.newAmountLimit {
+    width: 484px;
+}
+
+.newLimitInput {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px 17px 9px 22px;
+    border: 1px solid #000;
+}
+
+.newLimitInput__input {
+    width: 100%;
+    border: none;
+    font-size: inherit;
+}
+
+.newLimitInput__input:focus {
+    outline: none;
+}
+
+.addNewLimitButton {
+    width: 370px;
+    height: 58px;
+    border: none;
+    border-radius: 5px;
+    font-size: inherit;
+    font-weight: 400;
+    line-height: 58px;
+    color: #FFF;
+    background-color: #0094FF;
+    cursor: pointer;
+}
+
+.body_fixed {
+    overflow: hidden;
+}
