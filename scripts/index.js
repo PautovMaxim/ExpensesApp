@@ -1,7 +1,8 @@
-const CURRENCY = 'руб.';
 const STATUS_IN_LIMIT = 'всё хорошо';
 const STATUS_OUT_OF_LIMIT = 'всё плохо';
 const STATUS_OUT_OF_LIMIT_CLASSNAME = 'status__statusText_negative';
+const STORAGE_LABEL_LIMIT = 'limit';
+const STORAGE_LABEL_EXPENSES = 'expenses';
 
 const inputNode = document.getElementById('inputExpense');
 const categorySelectNode = document.getElementById('categorySelect');
@@ -11,10 +12,31 @@ const totalNode = document.getElementById('totalValue');
 const statusNode = document.getElementById('statusText');
 const resetBtnNode = document.getElementById('resetButton');
 
-let expenses = [];
-
 const limitNode = document.getElementById('limitValue');
 let limit = parseInt(limitNode.innerText);
+
+const innitLimit = () => {
+    const limitFromStorage = parseInt(localStorage.getItem(STORAGE_LABEL_LIMIT))
+    if (!limitFromStorage) {
+        return;
+    }
+    limitNode.innerText = limitFromStorage;
+    limit = parseInt(limitNode.innerText);
+}
+
+innitLimit();
+
+let expenses = [];
+
+const innitHistory = () => {
+    const expensesFromStorageString = localStorage.getItem(STORAGE_LABEL_EXPENSES);
+    const expensesFromStorage = JSON.parse(expensesFromStorageString);
+    if (Array.isArray(expensesFromStorage)) {
+        expenses = expensesFromStorage;
+    }
+
+    render();
+}
 
 const getTotal = () => {
     let sum = 0;
@@ -28,7 +50,7 @@ const getTotal = () => {
 
 const renderStatus = () => {
     const total = getTotal(expenses);
-    totalNode.innerText = `${total} руб.`;
+    totalNode.innerText = total;
 
     if (total <= limit) {
         statusNode.innerText = STATUS_IN_LIMIT;
@@ -56,6 +78,8 @@ const render = () => {
     renderHistory(); 
 };
 
+innitHistory();
+
 const getExpenseFromUser = () => parseInt(inputNode.value);
 const getSelectedCategory = () => categorySelectNode.value;
 
@@ -67,14 +91,21 @@ const clearCategory = () => {
     categorySelectNode.value  = 'Категория';
 }
 
+const saveExpensesToStorage = () => {
+    const expensesString = JSON.stringify(expenses);
+    localStorage.setItem(STORAGE_LABEL_EXPENSES, expensesString);
+}
+
 const addBtnHandler = () => {
     const expense = getExpenseFromUser();
     if (!expense) {
+        alert('Введите стоимость');
         return;
     }
 
     const category = getSelectedCategory();
     if (category === 'Категория') {
+        alert('Выберите категорию');
         return;
     }
     
@@ -82,18 +113,28 @@ const addBtnHandler = () => {
     console.log(newExpense);
 
     expenses.push(newExpense);
+    saveExpensesToStorage();
+
+
     render();
     clearInput();
     clearCategory();
 }
 
+const clearStorage = () => {
+    localStorage.removeItem(STORAGE_LABEL_EXPENSES);
+}
+
 const clearBtnHandler = () => {
     expenses = [];
+    clearStorage();
     render();
 }
 
 buttonNode.addEventListener('click', addBtnHandler);
 resetBtnNode.addEventListener('click', clearBtnHandler);
+
+
 
 
 

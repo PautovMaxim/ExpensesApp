@@ -33,6 +33,9 @@ const addNewLimit = () => {
     limit = newLimit;
 
     limitNode.innerText = newLimit;
+    //сохраняем лимит в локал 
+    localStorage.setItem(STORAGE_LABEL_LIMIT, newLimit);
+
     render();
     clearInputLimit();
     togglePopup();
