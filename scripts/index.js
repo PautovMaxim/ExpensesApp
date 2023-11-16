@@ -118,6 +118,7 @@ const addBtnHandler = () => {
 
     render();
     clearInput();
+    inputNode.focus();
     clearCategory();
 }
 
